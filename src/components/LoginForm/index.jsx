@@ -15,13 +15,12 @@ const LoginForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("email", email);
-    console.log("password", password);
     try {
       const response = await axios.post("http://localhost:4000/auth/login", {
         email,
         password,
       });
+      localStorage.setItem("token", response.data.data.token);
       console.log("response", response);
     } catch (error) {
       console.log("error", error);
