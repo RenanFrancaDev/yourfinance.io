@@ -1,9 +1,11 @@
 "use client";
 import axios from "axios";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import * as S from "./style";
 
 const LoginForm = () => {
+  const router = useRouter();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [notification, setNotification] = useState({
@@ -31,6 +33,7 @@ const LoginForm = () => {
         message: `user ${email} successfully registered!`,
         severity: "success",
       });
+      router.push("/dashboard");
     } catch (error) {
       setNotification({
         open: true,

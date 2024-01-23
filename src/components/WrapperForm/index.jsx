@@ -1,9 +1,7 @@
 import * as S from "./style";
 
-const WrapperForm = () => {
-  return <S.Wrapper>
-    OISSSS
-  </S.Wrapper>;
+const WrapperForm = ({ children }) => {
+  return <S.Wrapper>{children}</S.Wrapper>;
 };
 
 export default WrapperForm;

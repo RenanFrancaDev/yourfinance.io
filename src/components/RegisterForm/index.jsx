@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import * as S from "./style";
 
 const RegisterForm = () => {
@@ -26,7 +27,12 @@ const RegisterForm = () => {
         password,
       });
       localStorage.setItem("token", response.data.data.token);
-      console.log("response", response);
+      setNotification({
+        open: true,
+        message: `User ${user} successfully registered`,
+        severity: "success",
+      });
+      router.push("/dashboard");
     } catch (error) {
       console.log("error", error);
     }
