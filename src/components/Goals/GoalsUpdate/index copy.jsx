@@ -1,12 +1,13 @@
 "use client";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./style";
 
-const CategoriesUpdate = () => {
-  const [name, setName] = useState("");
+const GoalsUpdate = ({ goalId }) => {
+  const [description, setDescription] = useState("");
+  const [amount, setAmount] = useState("");
+  const [date, setDate] = useState("");
   const [userId, setUserId] = useState("");
-  const [categoryId, setCategoryId] = useState(1);
 
   const [notification, setNotification] = useState({
     open: false,
@@ -16,42 +17,46 @@ const CategoriesUpdate = () => {
 
   const onChangeValue = (e) => {
     const { name, value } = e.target;
-    if (name === "name") setName(value);
+    if (name === "description") setDescription(value);
+    if (name === "amount") setAmount(value);
+    if (name === "date") setDate(value);
   };
 
   useEffect(() => {
-    const getCategory = async () => {
+    const getGoal = async () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `http://localhost:4000/categories/${categoryId}`,
+          `http://localhost:4000/goals/${goalId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-        setName(response.data.data.name);
+        setDescription(response.data.data.description);
+        setAmount(response.data.data.amount);
+        setDate(response.data.data.date);
         setUserId(response.data.data.user_id);
       } catch (error) {
         console.log(error);
         setNotification({
           open: true,
-          message: error.response.data.error,
+          message: "error",
           severity: "error",
         });
       }
     };
-    getCategory();
-  }, [categoryId]);
+    getGoal();
+  }, [goalId]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.put(
-        `http://localhost:4000/categories/${categoryId}`,
-        { name, user_id: userId },
+      await axios.put(
+        `http://localhost:4000/goals/${goalId}`,
+        { description, amount, date, userId },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -60,13 +65,13 @@ const CategoriesUpdate = () => {
       );
       setNotification({
         open: true,
-        message: `Category ${name} successfully updated!`,
+        message: `Goal ${description} successfully updated!`,
         severity: "success",
       });
     } catch (error) {
       setNotification({
         open: true,
-        message: response.data.data.error,
+        message: error.response.data.error,
         severity: "error",
       });
 
@@ -85,19 +90,39 @@ const CategoriesUpdate = () => {
   return (
     <>
       <S.Form onSubmit={onSubmit}>
-        <S.H1>Criar Categoria</S.H1>
+        <S.H1>Update Goal</S.H1>
         <S.TextField
           onChange={onChangeValue}
-          name="name"
-          id="name"
+          name="description"
+          id="description"
           label="Name"
           variant="outlined"
+          value={description}
           color="primary"
-          value={name}
+        />
+
+        <S.TextField
+          onChange={onChangeValue}
+          name="amount"
+          id="amount"
+          label="Value"
+          variant="outlined"
+          value={amount}
+          color="primary"
+        />
+
+        <S.TextField
+          onChange={onChangeValue}
+          name="date"
+          id="date"
+          label="Date"
+          variant="outlined"
+          value={date}
+          color="primary"
         />
 
         <S.Button type="submit" variant="contained">
-          Update
+          Register
         </S.Button>
       </S.Form>
 
@@ -118,4 +143,4 @@ const CategoriesUpdate = () => {
   );
 };
 
-export default CategoriesUpdate;
+export default GoalsUpdate;

@@ -3,10 +3,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import * as S from "./style";
 
-const CategoriesUpdate = () => {
-  const [name, setName] = useState("");
+const GoalUpdate = ({ goalId }) => {
+  const [description, setDescription] = useState();
+  const [amount, setAmount] = useState();
+  const [date, setDate] = useState();
   const [userId, setUserId] = useState("");
-  const [categoryId, setCategoryId] = useState(1);
 
   const [notification, setNotification] = useState({
     open: false,
@@ -16,22 +17,26 @@ const CategoriesUpdate = () => {
 
   const onChangeValue = (e) => {
     const { name, value } = e.target;
-    if (name === "name") setName(value);
+    if (name === "description") setDescription(value);
+    if (name === "amount") setAmount(value);
+    if (name === "date") setDate(value);
   };
 
   useEffect(() => {
-    const getCategory = async () => {
+    const getGoal = async () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `http://localhost:4000/categories/${categoryId}`,
+          `http://localhost:4000/goals/${goalId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-        setName(response.data.data.name);
+        setDescription(response.data.data.description);
+        setAmount(response.data.data.amount);
+        setDate(response.data.data.date);
         setUserId(response.data.data.user_id);
       } catch (error) {
         console.log(error);
@@ -42,16 +47,16 @@ const CategoriesUpdate = () => {
         });
       }
     };
-    getCategory();
-  }, [categoryId]);
+    getGoal();
+  }, [goalId]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:4000/categories/${categoryId}`,
-        { name, user_id: userId },
+        `http://localhost:4000/goals/${goalId}`,
+        { description, amount, date, user_id: userId },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -60,7 +65,7 @@ const CategoriesUpdate = () => {
       );
       setNotification({
         open: true,
-        message: `Category ${name} successfully updated!`,
+        message: `Goal ${description} successfully updated!`,
         severity: "success",
       });
     } catch (error) {
@@ -85,15 +90,35 @@ const CategoriesUpdate = () => {
   return (
     <>
       <S.Form onSubmit={onSubmit}>
-        <S.H1>Criar Categoria</S.H1>
+        <S.H1>Update Goal</S.H1>
         <S.TextField
           onChange={onChangeValue}
-          name="name"
-          id="name"
-          label="Name"
+          name="description"
+          id="description"
+          label="Description"
           variant="outlined"
           color="primary"
-          value={name}
+          value={description}
+        />
+
+        <S.TextField
+          onChange={onChangeValue}
+          name="amount"
+          id="amount"
+          label="Value"
+          variant="outlined"
+          color="primary"
+          value={amount}
+        />
+
+        <S.TextField
+          onChange={onChangeValue}
+          name="date"
+          id="date"
+          label="Date"
+          variant="outlined"
+          color="primary"
+          value={date}
         />
 
         <S.Button type="submit" variant="contained">
@@ -118,4 +143,4 @@ const CategoriesUpdate = () => {
   );
 };
 
-export default CategoriesUpdate;
+export default GoalUpdate;
