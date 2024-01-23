@@ -34,7 +34,7 @@ const LoginForm = () => {
     } catch (error) {
       setNotification({
         open: true,
-        message: error.response.data.error,
+        message: "error",
         severity: "error",
       });
 
@@ -53,7 +53,9 @@ const LoginForm = () => {
   return (
     <>
       <S.Form onSubmit={onSubmit}>
-        <S.H1>Login</S.H1>
+        <S.Typography variant="h1" color="primary">
+          YOURfinance.IO
+        </S.Typography>
         <S.TextField
           onChange={onChangeValue}
           name="email"
@@ -74,6 +76,7 @@ const LoginForm = () => {
         <S.Button type="submit" variant="contained">
           Login
         </S.Button>
+        <S.Link href="/register">Create account</S.Link>
       </S.Form>
 
       <S.Snackbar

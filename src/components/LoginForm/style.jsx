@@ -3,11 +3,17 @@ import ButtonMUI from "@mui/material/Button";
 import TextFieldMUI from "@mui/material/TextField";
 import AlertMUI from "@mui/material/Alert";
 import SnackbarMUI from "@mui/material/Snackbar";
+import TypographyMUI from "@mui/material/Typography";
+import LinkNEXT from "next/link";
 
-export const Button = styled(ButtonMUI)``;
+export const Button = styled(ButtonMUI)`
+  width: 90%;
+  margin-bottom: 40px;
+`;
 
 export const TextField = styled(TextFieldMUI)`
   width: 90%;
+  margin-bottom: 32px;
 `;
 
 export const H1 = styled.h2``;
@@ -28,3 +34,13 @@ export const Form = styled.form`
 export const Alert = styled(AlertMUI)``;
 
 export const Snackbar = styled(SnackbarMUI)``;
+
+export const Typography = styled(TypographyMUI)`
+  padding-top: 20px;
+  margin-bottom: 64px;
+`;
+
+export const Link = styled(LinkNEXT)`
+  color: ${({ theme }) => theme.palette.primary.main};
+  text-decoration: none;
+`;

@@ -1,13 +1,14 @@
 "use client";
 
 import LoginForm from "@/components/LoginForm";
+import WrapperForm from "@/components/WrapperForm";
 import * as S from "./style";
 
 const LoginPage = () => {
   return (
-    <S.LoginWrap>
+    <WrapperForm>
       <LoginForm />
-    </S.LoginWrap>
+    </WrapperForm>
   );
 };
 
