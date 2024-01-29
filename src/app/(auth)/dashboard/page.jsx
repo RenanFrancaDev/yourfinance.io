@@ -1,15 +1,18 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-// import CategoriesCreate from "@/components/Categories/CategoriesCreate";
+import CategoriesCreate from "@/components/Categories/CategoriesCreate";
 // import CategoriesUpdate from "@/components/Categories/CategoriesUpdate";
 // import GoalsCreated from "@/components/Goals/GoalsCreate";
 // import GoalsUpdate from "@/components/Goals/GoalsUpdate";
 // import TransactionsCreate from "@/components/Transactions/TransactionsCreate";
-import TransactionsUpdate from "@/components/Transactions/TransactionsUpdate";
+// import TransactionsUpdate from "@/components/Transactions/TransactionsUpdate";
 
 const DashboardPage = () => {
+  const [user, setUser] = useState({
+    id: null,
+  });
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -30,7 +33,7 @@ const DashboardPage = () => {
   return (
     <div>
       <h1>dash</h1>
-      <TransactionsUpdate transactionId={1} />
+      <CategoriesCreate />
     </div>
   );
 };
