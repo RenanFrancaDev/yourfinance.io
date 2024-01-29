@@ -181,8 +181,8 @@ const TransactionsUpdate = ({ transactionId }) => {
             label="Type"
             onChange={onChangeValue}
           >
-            <S.MenuItem value="despesa">Despesa</S.MenuItem>
-            <S.MenuItem value="receita">Receita</S.MenuItem>
+            <S.MenuItem value="Expense">Expense</S.MenuItem>
+            <S.MenuItem value="income">Income</S.MenuItem>
           </S.Select>
         </S.FormControl>
 
