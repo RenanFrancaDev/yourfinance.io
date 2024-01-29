@@ -70,7 +70,7 @@ const GoalsCreated = ({ openModal, closeModal }) => {
     const { name, value } = e.target;
     if (name === "description") setDescription(value);
     if (name === "amount") setAmount(value);
-    if (name === "date") setDate(value);
+    // if (name === "date") setDate(value);
   };
 
   const onSubmit = async (e) => {
@@ -106,7 +106,7 @@ const GoalsCreated = ({ openModal, closeModal }) => {
     }
   };
 
-  const handleClose = () => {
+  const handleClose = (_, reason) => {
     if (reason === "clickaway") {
       return;
     }
@@ -134,12 +134,9 @@ const GoalsCreated = ({ openModal, closeModal }) => {
       </S.Snackbar>
 
       <Dialog open={open} onClose={handleCloseModal} adapterLocale={ptBR}>
-        <DialogTitle style={{ textAlign: "center" }}>
-          Criar Categoria
-        </DialogTitle>
+        <DialogTitle style={{ textAlign: "center" }}>Create Goal</DialogTitle>
         <DialogContent>
           <S.Form onSubmit={onSubmit}>
-            <S.H1>Create Goal</S.H1>
             <S.TextField
               onChange={onChangeValue}
               name="description"
