@@ -34,7 +34,6 @@ const CategoriesUpdate = () => {
         setName(response.data.data.name);
         setUserId(response.data.data.user_id);
       } catch (error) {
-        console.log(error);
         setNotification({
           open: true,
           message: error.response.data.error,
@@ -69,8 +68,6 @@ const CategoriesUpdate = () => {
         message: response.data.data.error,
         severity: "error",
       });
-
-      console.log("error", error);
     }
   };
 
