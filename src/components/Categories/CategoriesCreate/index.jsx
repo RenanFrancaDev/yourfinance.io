@@ -20,7 +20,6 @@ const CategoriesCreate = ({ openModal, closeModal }) => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    console.log(openModal);
     if (openModal) {
       setOpen(true);
     }
@@ -60,8 +59,6 @@ const CategoriesCreate = ({ openModal, closeModal }) => {
         message: error.response.data.error,
         severity: "error",
       });
-
-      console.log("error", error);
     }
   };
 

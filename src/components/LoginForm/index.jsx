@@ -40,8 +40,6 @@ const LoginForm = () => {
         message: "error",
         severity: "error",
       });
-
-      console.log("error", error);
     }
   };
 

@@ -58,7 +58,6 @@ const TransactionsCreate = ({ openModal, closeModal }) => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    console.log(openModal);
     if (openModal) {
       setOpen(true);
     }
@@ -80,7 +79,6 @@ const TransactionsCreate = ({ openModal, closeModal }) => {
         });
         setCategories(response.data.data);
       } catch (error) {
-        console.log(error);
         setNotification({
           open: true,
           message: "error",
@@ -98,7 +96,6 @@ const TransactionsCreate = ({ openModal, closeModal }) => {
     // if (name === "date") setDate(value);
     if (name === "type") setTypeTransaction(value);
     if (name === "category") setCategory(value);
-    console.log(category);
   };
 
   const onSubmit = async (e) => {
@@ -131,8 +128,6 @@ const TransactionsCreate = ({ openModal, closeModal }) => {
         message: "error.response.data.error",
         severity: "error",
       });
-
-      console.log("error", error);
     }
   };
 

@@ -39,7 +39,6 @@ const GoalUpdate = ({ goalId }) => {
         setDate(response.data.data.date);
         setUserId(response.data.data.user_id);
       } catch (error) {
-        console.log(error);
         setNotification({
           open: true,
           message: error.response.data.error,
@@ -74,8 +73,6 @@ const GoalUpdate = ({ goalId }) => {
         message: response.data.data.error,
         severity: "error",
       });
-
-      console.log("error", error);
     }
   };
 

@@ -33,9 +33,7 @@ const RegisterForm = () => {
         severity: "success",
       });
       router.push("/dashboard");
-    } catch (error) {
-      console.log("error", error);
-    }
+    } catch (error) {}
   };
 
   const handleClick = () => {

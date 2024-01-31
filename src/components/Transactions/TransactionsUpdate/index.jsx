@@ -67,7 +67,6 @@ const TransactionsUpdate = ({ transactionId }) => {
         setCategory(response.data.data.category_id);
         setUserId(response.data.data.user_id);
       } catch (error) {
-        console.log(error);
         setNotification({
           open: true,
           message: "error",
@@ -109,8 +108,6 @@ const TransactionsUpdate = ({ transactionId }) => {
         message: "error",
         severity: "error",
       });
-
-      console.log("error", error);
     }
   };
 
