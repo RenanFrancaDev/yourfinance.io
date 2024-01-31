@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import CategoriesCreate from "@/components/Categories/CategoriesCreate";
+// import CategoriesCreate from "@/components/Categories/CategoriesCreate";
 // import CategoriesUpdate from "@/components/Categories/CategoriesUpdate";
 // import GoalsCreated from "@/components/Goals/GoalsCreate";
 // import GoalsUpdate from "@/components/Goals/GoalsUpdate";
 // import TransactionsCreate from "@/components/Transactions/TransactionsCreate";
 // import TransactionsUpdate from "@/components/Transactions/TransactionsUpdate";
+import Chart from "@/components/Chart";
+import Panel from "@/components/Panel";
 
 const DashboardPage = () => {
   const [user, setUser] = useState({
@@ -31,9 +33,10 @@ const DashboardPage = () => {
   });
 
   return (
-    <div>
+    <div style={{ margin: "30px 30px" }}>
       <h1>dash</h1>
-      <CategoriesCreate />
+      <Panel />
+      <Chart />
     </div>
   );
 };
