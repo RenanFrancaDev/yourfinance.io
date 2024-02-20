@@ -26,17 +26,19 @@ const DashboardPage = () => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => console.log(response.data.data))
+      .then((response) => setUser(response.data.data))
       .catch((error) => {
         window.location.href = "/login";
       });
-  });
+  }, []);
 
   return (
     <div style={{ margin: "30px 30px" }}>
-      <h1>dash</h1>
+      <h2> Olá, {user.name}</h2>
       <Panel />
-      <Chart />
+      <div style={{ marginLeft: "80px" }}>
+        <Chart />
+      </div>
     </div>
   );
 };
