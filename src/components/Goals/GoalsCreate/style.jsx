@@ -19,10 +19,8 @@ export const Form = styled.form`
   justify-content: center;
   gap: 12px;
   padding: 10px;
-  border: 1px solid #212121;
+
   min-width: 400px;
-  border-radius: 5%;
-  box-shadow: 0px 0px 10px 2px #212121;
 `;
 
 export const Alert = styled(AlertMUI)``;
