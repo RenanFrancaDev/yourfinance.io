@@ -2,6 +2,7 @@ import { BarChart } from "@mui/x-charts/BarChart";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../Loading";
+import { axisClasses } from "@mui/x-charts";
 
 export const Chart = () => {
   const [dataset, setDataset] = useState([]);
@@ -50,8 +51,19 @@ export const Chart = () => {
   }, []);
 
   const chartSetting = {
+    yAxis: [
+      {
+        label: "rainfall (mm)",
+      },
+    ],
     height: 400,
-    width: 900,
+    width: 700,
+    yAxisWidth: 80, // Defina o valor desejado para a largura do eixo Y aqui
+    sx: {
+      [`.${axisClasses.left} .${axisClasses.label}`]: {
+        transform: "translate(-20px, 0)",
+      },
+    },
   };
 
   const valueFormatter = (value) => `R$ ${value / 100}`;
