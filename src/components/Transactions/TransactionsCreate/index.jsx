@@ -159,9 +159,6 @@ const TransactionsCreate = ({ openModal, closeModal }) => {
       </S.Snackbar>
 
       <Dialog open={open} onClose={handleCloseModal} adapterLocale={ptBR}>
-        <DialogTitle style={{ textAlign: "center" }}>
-          Criar Categoria
-        </DialogTitle>
         <DialogContent>
           <S.Form onSubmit={onSubmit}>
             <S.H1>Create Transaction</S.H1>
@@ -199,7 +196,6 @@ const TransactionsCreate = ({ openModal, closeModal }) => {
                 ))}
               </S.Select>
             </S.FormControl>
-            {category}
 
             <S.FormControl>
               <S.InputLabel id="type">Type</S.InputLabel>
