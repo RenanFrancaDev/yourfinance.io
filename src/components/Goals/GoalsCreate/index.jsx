@@ -154,7 +154,7 @@ const GoalsCreated = ({ openModal, closeModal }) => {
               variant="outlined"
             />
 
-            {formatISO(date, { representation: "date", locale: ptBR })}
+            {/* {formatISO(date, { representation: "date", locale: ptBR })} */}
 
             <LocalizationProvider
               dateAdapter={AdapterDateFns}

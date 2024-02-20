@@ -19,7 +19,7 @@ const Panel = () => {
   const [goals, setGoals] = useState([]);
 
   useEffect(() => {
-    const geGoals = async () => {
+    const getGoals = async () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get("http://localhost:4000/goals", {
@@ -31,7 +31,8 @@ const Panel = () => {
         setGoals(response.data.data);
       } catch (_) {}
     };
-    geGoals();
+
+    getGoals();
   }, []);
 
   useEffect(() => {
@@ -45,7 +46,6 @@ const Panel = () => {
         });
 
         const data = response.data.data;
-        // console.log("data", data);
 
         let objectBalance = {
           balance: 0,
@@ -56,7 +56,6 @@ const Panel = () => {
         for (let i = 0; i < data.length; i++) {
           const dateObj = new Date(data[i].date).getFullYear();
           objectBalance.date = dateObj;
-          console.log("data", data[i].type);
 
           if (data[i].type === "Expense") {
             objectBalance.expense += data[i].amount;
@@ -67,11 +66,8 @@ const Panel = () => {
           }
 
           objectBalance.balance = objectBalance.income - objectBalance.expense;
-
-          console.log("obj", objectBalance);
-
-          setSum(objectBalance);
         }
+        setSum(objectBalance);
       } catch (_) {}
     };
     getTransactions();
@@ -79,11 +75,13 @@ const Panel = () => {
 
   return (
     <div>
-      <Grid container spacing={8}>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item xs={6}>
           <Card label={"Balance"} value={`R$ ${sum.balance / 100}`}>
             <AccountBalanceWalletIcon />
           </Card>
+        </Grid>
+        <Grid item xs={6}>
           <Card label={"Income"} value={`R$ ${sum.income / 100}`}>
             <SwapHorizIcon />
           </Card>
@@ -92,13 +90,9 @@ const Panel = () => {
           <Card label={"Expense"} value={`R$ ${sum.expense / 100}`}>
             <LocalAtmIcon />
           </Card>
-          <Card
-            label={"Goals"}
-            value="R$250,00"
-            isGoal
-            goals={goals}
-            balance={sum.balance}
-          >
+        </Grid>
+        <Grid item xs={6}>
+          <Card label={"Goals"} isGoal goals={goals} balance={sum.balance}>
             <AdsClickIcon />
           </Card>
         </Grid>
@@ -108,17 +102,3 @@ const Panel = () => {
 };
 
 export default Panel;
-
-// let objectBalance = {};
-// for (let i = 0; i < data.length; i++) {
-//   const dateObj = new Date(data[i].date).getFullYear();
-
-//   if (!objectBalance[`${dateObj}`]) {
-//     objectBalance[`${dateObj}`] = { income: 0, expense: 0 };
-
-//     objectBalance[`${dateObj}`][`${data[i].type.toLowerCase()}`] =
-//       data[i].amount;
-//   } else {
-//     objectBalance[`${dateObj}`][`${data[i].type.toLowerCase()}`] +=
-//       data[i].amount;
-//   }
