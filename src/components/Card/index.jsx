@@ -13,8 +13,6 @@ const Card = ({ children, label, value, isGoal, goals = [], balance = 0 }) => {
     if (name === "goal") setGoal(value);
   };
 
-  //   console.log("goal", goal);
-
   return (
     <S.ChartContainer>
       <S.IconWraper>
@@ -25,10 +23,11 @@ const Card = ({ children, label, value, isGoal, goals = [], balance = 0 }) => {
 
         {!isGoal && <S.Content style={{ fontWeight: 600 }}>{value}</S.Content>}
         {isGoal && (
-          <S.Content style={{ fontWeight: 600 }}>{`${(
-            ((goal - balance) / goal) *
-            100
-          ).toFixed(0)}%`}</S.Content>
+          <S.Content style={{ fontWeight: 600 }}>
+            {goal !== ""
+              ? `${(((goal - balance) / goal) * 100).toFixed(0)}%`
+              : "Select an option"}
+          </S.Content>
         )}
       </S.Content>
       {isGoal && (
