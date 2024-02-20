@@ -27,7 +27,7 @@ const StatementPage = () => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => console.log(response.data.data))
+      .then((response) => setUser(response.data.data))
       .catch((error) => {
         window.location.href = "/login";
       });
@@ -35,34 +35,35 @@ const StatementPage = () => {
 
   return (
     <>
-      <div>
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          onClick={() => setOpenModalTransactions(true)}
-        >
-          New Statment
-        </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        type="submit"
+        onClick={() => setOpenModalTransactions(true)}
+        style={{ marginRight: "10px" }}
+      >
+        New Transaction
+      </Button>
 
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          onClick={() => setOpenModalCategory(true)}
-        >
-          New Category
-        </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        type="submit"
+        onClick={() => setOpenModalCategory(true)}
+        style={{ marginRight: "10px" }}
+      >
+        New Category
+      </Button>
 
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          onClick={() => setOpenModalGoal(true)}
-        >
-          New Goal
-        </Button>
-      </div>
+      <Button
+        variant="contained"
+        color="primary"
+        type="submit"
+        onClick={() => setOpenModalGoal(true)}
+        style={{ marginRight: "10px" }}
+      >
+        New Goal
+      </Button>
       <TransactionsList />
       <CategoriesCreate
         openModal={openModalCategory}
